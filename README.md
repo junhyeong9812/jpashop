@@ -2,6 +2,7 @@
 <br>
 위와 같은 예제 시스템을 구축하는 코드입니다.
 <br>
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/e6485b19-4b7d-4455-8a72-419a55af9f4c/756aa410-c562-4893-b614-8ebd0ef3e647/image.png)
+![image](https://github.com/user-attachments/assets/57ae8823-9818-4517-b5ac-6c3a5e428d7a)
+
 <br>
 프로젝트 설정
