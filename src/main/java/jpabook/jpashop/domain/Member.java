@@ -2,6 +2,9 @@ package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 //@Table(indexes = @Index())
 //인덱스도 다 넣는 편 객체보고 jpql을 작성할 때 사용할 index를 바로 사용할 수도 있다.
@@ -15,6 +18,9 @@ public class Member {
     private String city;
     private String street;
     private String zipcode;
+
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders=new ArrayList<>();
 
     //setter는 생성자를 이용하는게 좋음
     //setter는 유지보수가 안좋다.

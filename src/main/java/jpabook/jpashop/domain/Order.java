@@ -3,6 +3,8 @@ package jpabook.jpashop.domain;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "ORDERS")//DB에 ORDER가 예약어로 되어 있어서 ORDERS로 많이 사용
@@ -11,10 +13,17 @@ public class Order {
     @Column(name="ORDER_ID")
     private Long id;
 
-    @Column(name="MEMBER_ID")
-    private Long memberId;
-    //객체지향스럽지 않은 설계
-    //RDB에 맞춘 설계라 볼 수 있다.
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems= new ArrayList<>();
+    //이렇게 편의 메소드를 통해 오더아이템 객체를 저장
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
 
     public Member getMember() {
         return member;
@@ -24,7 +33,20 @@ public class Order {
         this.member = member;
     }
 
-    private Member member;
+    //    @Column(name="MEMBER_ID")
+//    private Long memberId;
+//    //객체지향스럽지 않은 설계
+//    //RDB에 맞춘 설계라 볼 수 있다.
+//
+//    public Member getMember() {
+//        return member;
+//    }
+//
+//    public void setMember(Member member) {
+//        this.member = member;
+//    }
+
+//    private Member member;
     //오더를 주문한 사람이 누군지 이렇게맴버 아이디가 아니라 내부에 맴버 객체가
     //존재하는 방식이여야 하지않나?
 
@@ -74,13 +96,13 @@ public class Order {
         this.id = id;
     }
 
-    public Long getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
-    }
+//    public Long getMemberId() {
+//        return memberId;
+//    }
+//
+//    public void setMemberId(Long memberId) {
+//        this.memberId = memberId;
+//    }
 
     public LocalDateTime getOrderDate() {
         return orderDate;
@@ -97,4 +119,6 @@ public class Order {
     public void setStatus(OrderStatus status) {
         this.status = status;
     }
+
+
 }
