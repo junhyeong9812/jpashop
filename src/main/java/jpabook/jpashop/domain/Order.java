@@ -24,6 +24,9 @@ public class Order {
         orderItems.add(orderItem);
         orderItem.setOrder(this);
     }
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
 
     public Member getMember() {
         return member;
