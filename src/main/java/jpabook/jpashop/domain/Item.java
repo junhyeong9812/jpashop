@@ -6,7 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Item {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn
+public abstract class Item extends BaseEntity {
+    //Book/Album/Movie에 대해서는 상속으로 받기 때문에 굳이 베이스 엔티티를
+    //상속받지 않아도 된다.
     @Id
     @GeneratedValue
     @Column(name="ITEM_ID")

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "ORDERS")//DB에 ORDER가 예약어로 되어 있어서 ORDERS로 많이 사용
-public class Order {
+public class Order extends BaseEntity{
     @Id @GeneratedValue
     @Column(name="ORDER_ID")
     private Long id;

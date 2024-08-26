@@ -2,6 +2,7 @@ package jpabook.jpashop;
 
 
 import jakarta.persistence.*;
+import jpabook.jpashop.domain.Book;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderItem;
@@ -36,11 +37,17 @@ public class JpaMain {
             //편의 메소드를 통해 오더 객체에 오더아이템을 넣을 수 있다.
 
             //리스트를 안쓴다면? 양방향 설정을 안한다면?
-            Order order = new Order();
-            entityManager.persist(order);
-            OrderItem orderItem = new OrderItem();
-            orderItem.setOrder(order);
-            entityManager.persist(orderItem);
+//            Order order = new Order();
+//            entityManager.persist(order);
+//            OrderItem orderItem = new OrderItem();
+//            orderItem.setOrder(order);
+//            entityManager.persist(orderItem);
+
+            //상속관계 매핑
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("abc");
+            entityManager.persist(book);
 
             transaction.commit();
         }catch (Exception e){
