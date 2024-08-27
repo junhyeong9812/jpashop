@@ -13,18 +13,20 @@ public class Order extends BaseEntity{
     @Column(name="ORDER_ID")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
+    //라이플 사이클 매칭을 위한 Cascade 설정
     private List<OrderItem> orderItems= new ArrayList<>();
     //이렇게 편의 메소드를 통해 오더아이템 객체를 저장
     public void addOrderItem(OrderItem orderItem) {
         orderItems.add(orderItem);
         orderItem.setOrder(this);
     }
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    //라이플 사이클 매칭을 위한 Cascade 설정
     @JoinColumn(name = "DELIVERY_ID")
     private Delivery delivery;
 
